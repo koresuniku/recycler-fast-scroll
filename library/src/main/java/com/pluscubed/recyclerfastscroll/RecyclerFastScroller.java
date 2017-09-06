@@ -20,6 +20,7 @@ import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,8 @@ public class RecyclerFastScroller extends FrameLayout {
             requestLayout();
         }
     };
+
+    private boolean mScrollByPositions;
 
     public RecyclerFastScroller(Context context) {
         this(context, null, 0);
@@ -179,6 +182,7 @@ public class RecyclerFastScroller extends FrameLayout {
                         }
                     }
 
+
                     updateRvScroll(dY + mLastAppBarLayoutOffset - mAppBarLayoutOffset);
 
                     mLastPressedYAdjustedToInitial = newHandlePressedYAdjustedToInitial;
@@ -280,6 +284,14 @@ public class RecyclerFastScroller extends FrameLayout {
         if (hidingEnabled) {
             postAutoHide();
         }
+    }
+
+    /**
+     * @param scrollByPositions whether scroll by positions is enabled
+     */
+
+    public void setScrollByPositions(boolean scrollByPositions) {
+        this.mScrollByPositions = scrollByPositions;
     }
 
     private void updateHandleColorsAndInset() {
