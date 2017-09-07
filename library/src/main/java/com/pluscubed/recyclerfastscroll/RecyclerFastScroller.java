@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 public class RecyclerFastScroller extends FrameLayout {
+    private final String LOG_TAG = RecyclerFastScroller.class.getSimpleName();
 
     private static final int DEFAULT_AUTO_HIDE_DELAY = 1500;
 
@@ -172,6 +173,8 @@ public class RecyclerFastScroller extends FrameLayout {
 
                     int dY = (int) ((deltaPressedYFromLastAdjustedToInitial / mInitialBarHeight) *
                             (mRecyclerView.computeVerticalScrollRange() + (mAppBarLayout == null ? 0 : mAppBarLayout.getTotalScrollRange())));
+
+                    Log.d(LOG_TAG, "dy: " + dY);
 
                     if (mCoordinatorLayout != null && mAppBarLayout != null) {
                         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
